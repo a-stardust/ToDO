@@ -2,8 +2,11 @@
 # ToDO App
 ------------
 
-## Demo 
-![Demo Video](https://github.com/a-stardust/ToDO/assets/71326720/d3d6b90d-50a1-4c4a-989f-f2e12366ab07)
+## Demo
+
+https://github.com/a-stardust/ToDO/assets/71326720/60ba6946-1b32-4fae-a857-1edddfcfcb04
+
+
 
 
 
