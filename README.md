@@ -3,7 +3,7 @@
 ------------
 
 ## Demo 
-![Demo Video]([https://github.com/Raghav-Kamath/ACCENDIA/blob/dev2/docs/PDF-LangChain.jpg?raw=true](https://github.com/a-stardust/ToDO/blob/r_branch/todo_app_demo.mp4))
+![Demo Video](https://github.com/a-stardust/ToDO/assets/71326720/d3d6b90d-50a1-4c4a-989f-f2e12366ab07)
 
 
 
