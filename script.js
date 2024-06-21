@@ -1,4 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
+    const body = document.body;
     const inputField = document.getElementById('inputField');
     const timeField = document.getElementById('timeField');
     const bulletList = document.getElementById('bulletList');
@@ -10,9 +11,14 @@ document.addEventListener('DOMContentLoaded', () => {
         if (inputValue && timeValue) {
             const listItem = document.createElement('li');
 
+            const checkboxContainer = document.createElement('label');
+            checkboxContainer.className = 'checkbox-container';
+
             const checkbox = document.createElement('input');
             checkbox.type = 'checkbox';
             checkbox.className = 'task-checkbox';
+
+            checkboxContainer.appendChild(checkbox);
 
             const textSpan = document.createElement('span');
             textSpan.textContent = inputValue;
@@ -26,9 +32,9 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-button';
-            deleteButton.innerHTML = '🗑️';
+            deleteButton.innerHTML = '<i class="fas fa-trash-alt"></i>';
 
-            listItem.appendChild(checkbox);
+            listItem.appendChild(checkboxContainer);
             listItem.appendChild(textSpan);
             listItem.appendChild(timeSpan);
             listItem.appendChild(deleteButton);
@@ -96,5 +102,12 @@ document.addEventListener('DOMContentLoaded', () => {
         if (event.key === 'Enter') {
             addTask();
         }
+    });
+
+    // Add mouse movement listener for wave effect
+    document.addEventListener('mousemove', (e) => {
+        const x = (e.clientX / window.innerWidth - 0.5) * 2;
+        const y = (e.clientY / window.innerHeight - 0.5) * 2;
+        body.style.backgroundPosition = `${50 + x * 5}% ${50 + y * 5}%`;
     });
 });
