@@ -28,7 +28,11 @@ document.addEventListener('DOMContentLoaded', () => {
             const timeSpan = document.createElement('span');
             timeSpan.textContent = timeValue;
             timeSpan.className = 'time';
-            timeSpan.contentEditable = true;
+
+            const timeInput = document.createElement('input');
+            timeInput.type = 'time';
+            timeInput.className = 'time-input';
+            timeInput.style.display = 'none';
 
             const deleteButton = document.createElement('button');
             deleteButton.className = 'delete-button';
@@ -37,6 +41,7 @@ document.addEventListener('DOMContentLoaded', () => {
             listItem.appendChild(checkboxContainer);
             listItem.appendChild(textSpan);
             listItem.appendChild(timeSpan);
+            listItem.appendChild(timeInput);
             listItem.appendChild(deleteButton);
 
             // Add event listener to handle the blur on Enter key press in editable bullet point
@@ -61,16 +66,27 @@ document.addEventListener('DOMContentLoaded', () => {
                 bulletList.removeChild(listItem);
             });
 
-            // Add event listener to handle the blur on Enter key press in editable time
-            timeSpan.addEventListener('keypress', (event) => {
+            // Add event listener to switch to time input on click
+            timeSpan.addEventListener('click', () => {
+                timeInput.value = timeSpan.textContent;
+                timeSpan.style.display = 'none';
+                timeInput.style.display = 'inline';
+                timeInput.focus();
+            });
+
+            // Add event listener to handle the blur on Enter key press in time input
+            timeInput.addEventListener('keypress', (event) => {
                 if (event.key === 'Enter') {
                     event.preventDefault();
-                    timeSpan.blur();
+                    timeInput.blur();
                 }
             });
 
-            // Add event listener to re-sort the list after editing the time
-            timeSpan.addEventListener('blur', () => {
+            // Add event listener to update timeSpan and re-sort the list after editing the time
+            timeInput.addEventListener('blur', () => {
+                timeSpan.textContent = timeInput.value;
+                timeSpan.style.display = 'inline';
+                timeInput.style.display = 'none';
                 sortTasks();
             });
 
@@ -106,8 +122,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Add mouse movement listener for wave effect
     document.addEventListener('mousemove', (e) => {
-        const x = (e.clientX / window.innerWidth - 0.5) * 2;
-        const y = (e.clientY / window.innerHeight - 0.5) * 2;
-        body.style.backgroundPosition = `${50 + x * 5}% ${50 + y * 5}%`;
+        const x = e.clientX / window.innerWidth;
+        const y = e.clientY / window.innerHeight;
+        body.style.backgroundPosition = `${x * 50}% ${y * 50}%`;
     });
 });
